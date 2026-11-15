@@ -2,29 +2,23 @@
 
 import type { MouseEvent } from 'react';
 import { useContent, useLocale } from '@/src/i18n/I18nProvider';
-import { htmlLang, localePath, localeShortLabel, locales } from '@/src/i18n/locales';
-import type { LanguageSwitchProps, Locale, SectionId } from '@/src/types';
+import { htmlLang, localePath, localeShortLabel, locales, sectionHref } from '@/src/i18n/locales';
+import type { LanguageSwitchProps, Locale } from '@/src/types';
 
-const hrefFor = (locale: Locale, section: SectionId | null) => {
-  const base = localePath[locale];
-  if (!section) return base;
-  return base === '/' ? `/#${section}` : `${base}#${section}`;
-};
-
-export default function LanguageSwitch({ current, className = '' }: LanguageSwitchProps) {
+export default function LanguageSwitch({ current }: LanguageSwitchProps) {
   const { nav } = useContent();
   const active = useLocale();
 
   const switchTo = (locale: Locale) => (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.location.assign(hrefFor(locale, current));
+    window.location.assign(sectionHref(locale, current));
   };
 
   return (
     <div
       role="group"
       aria-label={nav.language.label}
-      className={`flex h-8 items-center rounded-full border border-line p-0.5 font-mono text-xs leading-none ${className}`}
+      className="flex h-8 items-center rounded-full border border-line p-0.5 font-mono text-xs leading-none"
     >
       {locales.map((locale) => {
         const label = (

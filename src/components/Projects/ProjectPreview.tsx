@@ -327,7 +327,7 @@ export default function ProjectPreview({ project, run, play, bleed }: ProjectPre
     <div
       aria-hidden
       style={{ '--glow': glow } as CSSProperties}
-      className={`${styles.stage} relative h-[208px] shrink-0 overflow-hidden rounded-[24px] sm:h-[220px] [@container(min-width:880px)]:h-auto [@container(min-width:880px)]:self-stretch ${projectPreview.side[layout]}`}
+      className={`${styles.stage} relative h-[208px] shrink-0 overflow-hidden rounded-[24px] sm:h-[220px] [@container(min-width:880px)]:h-auto [@container(min-width:880px)]:self-stretch ${project.featured ? projectPreview.featuredSide : ''}`}
     >
       <div
         className={`absolute -bottom-4 flex flex-col rounded-[14px] bg-card shadow-[0_22px_44px_-26px_rgb(var(--head)/0.4),0_0_0_1px_rgb(var(--head)/0.05)] transition-transform duration-500 ease-out motion-safe:group-focus-within:[transform:translateY(-6px)_rotate(-0.4deg)] motion-safe:group-hover:[transform:translateY(-6px)_rotate(-0.4deg)] dark:shadow-[0_22px_44px_-22px_rgb(0_0_0/0.85),0_0_0_1px_rgb(var(--head)/0.07)] ${projectPreview.top[layout]} ${projectPreview.window[bleed]}`}
@@ -347,7 +347,7 @@ export default function ProjectPreview({ project, run, play, bleed }: ProjectPre
             {projects.live}
           </span>
         </div>
-        <div data-preview={project.preview} className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 [container-type:size] ${projectPreview.inset[bleed]}`}>
+        <div className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 [container-type:size] ${projectPreview.inset[bleed]}`}>
           {run > 0 && <Fragment key={run}>{demo}</Fragment>}
         </div>
       </div>

@@ -198,6 +198,10 @@
   background-color: #6565656a;
 }
 
+.scroll-hide {
+  scrollbar-width: none;
+}
+
 .scroll-hide::-webkit-scrollbar {
   display: none;
 }

@@ -1,10 +1,8 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { getContent } from '@/src/content';
 import { AUTHOR, GOOGLE_SITE_VERIFICATION, SITE_URL, SOCIAL_IMAGE } from '@/src/config/site';
-import { defaultLocale, locales, localePath, ogLocale } from '@/src/i18n/locales';
+import { defaultLocale, htmlLang, locales, localePath, ogLocale } from '@/src/i18n/locales';
 import type { Locale } from '@/src/types';
-
-export const viewport: Viewport = { width: 'device-width', initialScale: 1 };
 
 export function buildMetadata(locale: Locale): Metadata {
   const { meta } = getContent(locale);
@@ -18,7 +16,10 @@ export function buildMetadata(locale: Locale): Metadata {
     robots: { index: true, follow: true },
     alternates: {
       canonical: localePath[locale],
-      languages: { 'pt-BR': localePath.pt, en: localePath.en, 'x-default': localePath[defaultLocale] },
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [htmlLang[l], localePath[l]])),
+        'x-default': localePath[defaultLocale],
+      },
     },
     verification: { google: GOOGLE_SITE_VERIFICATION },
     openGraph: {

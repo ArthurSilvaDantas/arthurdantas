@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { ACTIVE_SECTION_LINE } from '@/src/config/ui';
 
-export function useActiveSection<T extends string>(ids: readonly T[], enabled = true): T | null {
+export function useActiveSection<T extends string>(ids: readonly T[]): T | null {
   const [active, setActive] = useState<T | null>(null);
 
   useEffect(() => {
-    if (!enabled) {
-      setActive(null);
-      return;
-    }
-
     let frame = 0;
     let navH = 0;
 
@@ -43,7 +38,7 @@ export function useActiveSection<T extends string>(ids: readonly T[], enabled = 
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', measure);
     };
-  }, [ids, enabled]);
+  }, [ids]);
 
   return active;
 }

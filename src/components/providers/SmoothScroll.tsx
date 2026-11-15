@@ -3,6 +3,7 @@
 import Lenis from 'lenis';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import type { ChildrenProps } from '@/src/types';
+import { REDUCED_MOTION_QUERY } from '@/src/config/ui';
 
 const LenisContext = createContext<Lenis | null>(null);
 
@@ -36,7 +37,7 @@ export function useScrollToSection() {
       if (lenis) {
         lenis.scrollTo(target);
       } else {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const reduce = window.matchMedia(REDUCED_MOTION_QUERY).matches;
         target.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
       }
       target.focus({ preventScroll: true });

@@ -39,7 +39,7 @@ export type MarqueeTrackProps = { duplicate?: boolean };
 
 export type HeroGraphProps = { chips: Content['hero']['graphChips'] };
 
-export type LanguageSwitchProps = { current: SectionId | null; className?: string };
+export type LanguageSwitchProps = { current: SectionId | null };
 
 export type TimelineProps = { entries: ExperienceEntry[] };
 

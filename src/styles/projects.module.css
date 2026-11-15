@@ -27,10 +27,3 @@
     background: none;
   }
 }
-
-.scroller {
-  scrollbar-width: none;
-}
-.scroller::-webkit-scrollbar {
-  display: none;
-}

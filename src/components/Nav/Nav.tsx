@@ -2,29 +2,24 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState, type MouseEvent, type PointerEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type PointerEvent } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
-import { CTA_SECTION, sectionIds } from '@/src/content/shared';
+import { sectionIds } from '@/src/content/shared';
 import { NAV_MENU_ID, NAV_SCROLLED_THRESHOLD } from '@/src/config/ui';
 import { useContent, useLocale } from '@/src/i18n/I18nProvider';
-import { localePath } from '@/src/i18n/locales';
+import { localePath, sectionHref } from '@/src/i18n/locales';
 import { duration, ease, spring } from '@/src/lib/motion';
 import { useLenis, useScrollToSection } from '@/src/components/providers/SmoothScroll';
 import { useActiveSection } from '@/src/hooks/useActiveSection';
 import type { Box, SectionId } from '@/src/types';
 import LanguageSwitch from './LanguageSwitch';
 
-const NAV_ITEM_IDS = sectionIds.filter((id) => id !== 'inicio');
-
-const barInset = (id: SectionId) => (id === CTA_SECTION ? 16 : 12);
-
 export default function Nav() {
   const { nav } = useContent();
-  const home = localePath[useLocale()];
-  const sectionHref = (id: SectionId) => (home === '/' ? `/#${id}` : `${home}#${id}`);
-  const pathname = usePathname();
-  const isHome = pathname === home;
+  const locale = useLocale();
+  const home = localePath[locale];
+  const items = useMemo(() => [...nav.links, nav.cta], [nav]);
+  const barInset = (id: SectionId) => (id === nav.cta.id ? 16 : 12);
   const scrollToSection = useScrollToSection();
   const lenis = useLenis();
 
@@ -62,14 +57,12 @@ export default function Nav() {
     };
   }, [open, setScrollLocked]);
 
-  useEffect(() => setOpen(false), [pathname]);
-
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > NAV_SCROLLED_THRESHOLD));
   useEffect(() => setScrolled(window.scrollY > NAV_SCROLLED_THRESHOLD), []);
 
-  const active = useActiveSection(sectionIds, isHome);
+  const active = useActiveSection(sectionIds);
   const current = active === 'inicio' ? null : active;
   const [lastCurrent, setLastCurrent] = useState<SectionId | null>(null);
   if (current && current !== lastCurrent) setLastCurrent(current);
@@ -85,7 +78,7 @@ export default function Nav() {
     const measure = () => {
       const origin = navEl.getBoundingClientRect().left;
       const next: Partial<Record<SectionId, Box>> = {};
-      NAV_ITEM_IDS.forEach((id) => {
+      items.forEach(({ id }) => {
         const el = itemRefs.current[id];
         if (!el?.offsetWidth) return;
         const r = el.getBoundingClientRect();
@@ -98,7 +91,7 @@ export default function Nav() {
     ro.observe(navEl);
     if (listRef.current) ro.observe(listRef.current);
     return () => ro.disconnect();
-  }, []);
+  }, [items]);
 
   const [hovered, setHovered] = useState<SectionId | null>(null);
   const [lastHovered, setLastHovered] = useState<SectionId | null>(null);
@@ -112,13 +105,9 @@ export default function Nav() {
   const barBox = barId ? boxes[barId] : undefined;
   const bar = barId && barBox ? { x: barBox.x + barInset(barId), width: barBox.w - 2 * barInset(barId) } : undefined;
   const hoverBox = lastHovered ? boxes[lastHovered] : undefined;
-  const currentLabel = [...nav.links, nav.cta].find((item) => item.id === current)?.label;
+  const currentLabel = items.find((item) => item.id === current)?.label;
 
   const goTo = (e: MouseEvent<HTMLAnchorElement>, id: SectionId) => {
-    if (!isHome) {
-      setOpen(false);
-      return;
-    }
     e.preventDefault();
     setScrollLocked(false);
     setOpen(false);
@@ -182,7 +171,7 @@ export default function Nav() {
                     ref={(el) => {
                       itemRefs.current[link.id] = el;
                     }}
-                    href={sectionHref(link.id)}
+                    href={sectionHref(locale, link.id)}
                     onClick={(e) => goTo(e, link.id)}
                     onPointerEnter={onItemEnter(link.id)}
                     aria-current={isCurrent ? 'location' : undefined}
@@ -200,7 +189,7 @@ export default function Nav() {
                 ref={(el) => {
                   itemRefs.current[nav.cta.id] = el;
                 }}
-                href={sectionHref(nav.cta.id)}
+                href={sectionHref(locale, nav.cta.id)}
                 onClick={(e) => goTo(e, nav.cta.id)}
                 aria-current={current === nav.cta.id ? 'location' : undefined}
                 className="block rounded-full bg-head px-4 py-2 text-sm font-medium leading-[normal] text-bg transition-opacity duration-200 hover:opacity-85"
@@ -232,7 +221,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls={NAV_MENU_ID}
             aria-label={open ? nav.menu.close : nav.menu.open}
-            className="grid size-10 place-items-center rounded-full border border-line-2 text-head md:hidden"
+            className="grid size-10 place-items-center rounded-full border border-line-2 text-head"
           >
             <span aria-hidden className="relative block h-3 w-4">
               <motion.span
@@ -278,7 +267,7 @@ export default function Nav() {
                 >
                   <Link
                     ref={i === 0 ? firstLinkRef : undefined}
-                    href={sectionHref(link.id)}
+                    href={sectionHref(locale, link.id)}
                     onClick={(e) => goTo(e, link.id)}
                     aria-current={current === link.id ? 'location' : undefined}
                     className="flex items-center justify-between border-b border-line py-4 font-display text-2xl font-medium text-head"
@@ -291,7 +280,7 @@ export default function Nav() {
             </motion.ul>
 
             <Link
-              href={sectionHref(nav.cta.id)}
+              href={sectionHref(locale, nav.cta.id)}
               onClick={(e) => goTo(e, nav.cta.id)}
               className="mt-auto rounded-full bg-head px-4 py-3 text-center text-base font-medium text-bg"
             >
