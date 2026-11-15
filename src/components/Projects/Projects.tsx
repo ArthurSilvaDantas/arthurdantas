@@ -4,7 +4,6 @@ import { useId, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import type { Project, ProjectFilterId } from '@/src/types';
 import { projectGrid } from '@/src/styles/classes';
-import styles from '@/src/styles/projects.module.css';
 import { useContent } from '@/src/i18n/I18nProvider';
 import { duration, ease, revealOrder } from '@/src/lib/motion';
 import SectionHeader from '@/src/components/SectionHeader';
