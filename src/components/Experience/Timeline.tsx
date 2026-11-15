@@ -45,7 +45,7 @@ function Entry({ entry, index }: TimelineEntryProps) {
           </span>
         </header>
         <div className="flex flex-col items-start gap-1.5">
-          <ul id={listId} className="list-disc space-y-0 ps-[22px] text-[15px] leading-[1.6] text-body marker:text-body">
+          <ul id={listId} className="list-disc ps-[22px] text-[15px] leading-[1.6] text-body">
             {topics.map((topic, i) => (
               <motion.li
                 key={topic}
@@ -63,7 +63,7 @@ function Entry({ entry, index }: TimelineEntryProps) {
               aria-expanded={open}
               aria-controls={listId}
               onClick={() => setOpen((v) => !v)}
-              className="group/more inline-flex items-center gap-1.5 rounded-full py-1 font-mono text-xs leading-[normal] text-accent-text transition-colors duration-200 hover:text-head"
+              className="inline-flex items-center gap-1.5 rounded-full py-1 font-mono text-xs leading-[normal] text-accent-text transition-colors duration-200 hover:text-head"
             >
               {open ? experience.showLess : experience.showMore}
               <svg aria-hidden viewBox="0 0 12 12" className={`size-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">

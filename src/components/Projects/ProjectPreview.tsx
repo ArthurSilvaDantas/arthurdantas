@@ -347,7 +347,7 @@ export default function ProjectPreview({ project, run, play, bleed }: ProjectPre
             {projects.live}
           </span>
         </div>
-        <div data-preview={project.preview} className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 [container-type:size] ${projectPreview.inset[bleed]}`}>
+        <div className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 [container-type:size] ${projectPreview.inset[bleed]}`}>
           {run > 0 && <Fragment key={run}>{demo}</Fragment>}
         </div>
       </div>

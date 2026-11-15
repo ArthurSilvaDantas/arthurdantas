@@ -232,7 +232,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls={NAV_MENU_ID}
             aria-label={open ? nav.menu.close : nav.menu.open}
-            className="grid size-10 place-items-center rounded-full border border-line-2 text-head md:hidden"
+            className="grid size-10 place-items-center rounded-full border border-line-2 text-head"
           >
             <span aria-hidden className="relative block h-3 w-4">
               <motion.span

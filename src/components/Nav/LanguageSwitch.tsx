@@ -11,7 +11,7 @@ const hrefFor = (locale: Locale, section: SectionId | null) => {
   return base === '/' ? `/#${section}` : `${base}#${section}`;
 };
 
-export default function LanguageSwitch({ current, className = '' }: LanguageSwitchProps) {
+export default function LanguageSwitch({ current }: LanguageSwitchProps) {
   const { nav } = useContent();
   const active = useLocale();
 
@@ -24,7 +24,7 @@ export default function LanguageSwitch({ current, className = '' }: LanguageSwit
     <div
       role="group"
       aria-label={nav.language.label}
-      className={`flex h-8 items-center rounded-full border border-line p-0.5 font-mono text-xs leading-none ${className}`}
+      className="flex h-8 items-center rounded-full border border-line p-0.5 font-mono text-xs leading-none"
     >
       {locales.map((locale) => {
         const label = (
