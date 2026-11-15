@@ -25,7 +25,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experiencia" tabIndex={-1} aria-labelledby="experiencia-titulo" className="section-screen focus:outline-none">
+    <section id="experiencia" tabIndex={-1} aria-labelledby="experiencia-titulo" className="section-screen focus:outline-hidden">
       <div className="site-container flex flex-col gap-12 pb-16 pt-20 lg:pt-24">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader id="experiencia-titulo" eyebrow={experience.eyebrow} title={experience.title}>

@@ -249,7 +249,7 @@ export default function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: duration.fast, ease: ease.out }}
-            className="fixed inset-x-0 bottom-0 top-[var(--nav-h)] z-40 flex flex-col bg-bg px-5 pb-10 pt-6 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-(--nav-h) z-40 flex flex-col bg-bg px-5 pb-10 pt-6 md:hidden"
           >
             <motion.ul
               initial="hidden"

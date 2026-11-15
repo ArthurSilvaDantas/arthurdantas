@@ -3,7 +3,7 @@ import type { Bleed, ProjectLayout, ProjectPreviewKind, TagVariant } from '@/src
 export const tagVariants: Record<TagVariant, string> = {
   tint: 'rounded-md bg-tint text-tint-text',
   outline: 'rounded-md border border-line bg-card text-body',
-  soft: 'rounded-full bg-head/[0.05] text-body dark:bg-head/[0.07]',
+  soft: 'rounded-full bg-head/5 text-body dark:bg-head/[0.07]',
 };
 
 export const tagPadding = (variant: TagVariant, hasIcon: boolean) =>
@@ -35,14 +35,14 @@ export const svgCenterOrigin = { transformBox: 'fill-box', transformOrigin: 'cen
 
 export const projectGrid = {
   regular: 'md:row-span-6 md:grid md:grid-rows-subgrid md:gap-y-3.5',
-  featured: 'md:col-span-2 xl:col-span-6 [container-type:inline-size]',
+  featured: 'md:col-span-2 xl:col-span-6 @container',
   mdCenteredLast: 'md:col-span-2 md:[&>article]:w-[calc(50%-0.75rem)] md:[&>article]:justify-self-center',
   xlStretched: 'xl:[&>article]:w-auto xl:[&>article]:justify-self-stretch',
 };
 
 export const projectCard = {
   linkPill:
-    'group/link flex h-9 items-center gap-1.5 rounded-full bg-head/[0.05] text-head transition-colors duration-200 hover:bg-accent/15 hover:text-accent-text dark:bg-head/[0.07] dark:hover:bg-accent/15',
+    'group/link flex h-9 items-center gap-1.5 rounded-full bg-head/5 text-head transition-colors duration-200 hover:bg-accent/15 hover:text-accent-text dark:bg-head/[0.07] dark:hover:bg-accent/15',
   arrow:
     'size-3 text-muted transition-[transform,color] duration-200 group-hover/link:-translate-y-px group-hover/link:translate-x-px group-hover/link:text-accent-text motion-reduce:transition-none motion-reduce:group-hover/link:transform-none',
   frame:

@@ -40,7 +40,7 @@ function RagDemo({ kind }: RagDemoProps) {
       </div>
       <motion.p
         {...appear(1.5)}
-        className="line-clamp-3 max-w-[460px] rounded-[12px_12px_12px_4px] bg-soft px-2.5 py-[5px] text-xs leading-[1.4] text-body [@container(min-width:310px)]:line-clamp-2 [@container(min-height:200px)]:line-clamp-none [@container(min-height:200px)]:px-[13px] [@container(min-height:200px)]:py-[9px] [@container(min-height:200px)]:text-[13px] [@container(min-height:200px)]:leading-[1.5]"
+        className="line-clamp-3 max-w-[460px] rounded-[12px_12px_12px_4px] bg-soft px-2.5 py-[5px] text-xs leading-[1.4] text-body [@container(min-width:310px)]:line-clamp-2 [@container(min-height:200px)]:line-clamp-none [@container(min-height:200px)]:px-[13px] [@container(min-height:200px)]:py-[9px] [@container(min-height:200px)]:text-[13px] [@container(min-height:200px)]:leading-normal"
       >
         {c.answer} <span className="font-mono text-accent-text">{c.citations}</span>
       </motion.p>
@@ -207,7 +207,7 @@ function ClassifyDemo({ play }: DemoProps) {
   return (
     <div className="flex h-full items-center gap-4 [@container(min-height:200px)]:gap-6">
       <div className="flex shrink-0 flex-col items-center gap-2">
-        <div className="relative size-[112px] overflow-hidden rounded-xl bg-gradient-to-br from-tint to-soft [@container(min-height:200px)]:size-[150px]">
+        <div className="relative size-[112px] overflow-hidden rounded-xl bg-linear-to-br from-tint to-soft [@container(min-height:200px)]:size-[150px]">
           <svg viewBox="0 0 150 150" className="absolute inset-0 h-full w-full" aria-hidden>
             <circle cx="108" cy="42" r="14" className="fill-accent/40" />
             <path d="M0 150 L48 78 L82 120 L104 96 L150 150 Z" className="fill-accent/30" />
@@ -280,7 +280,7 @@ function DigitsDemo({ play }: DemoProps) {
           return (
             <div key={i} className="flex flex-col items-center gap-1.5 [@container(min-height:200px)]:gap-2">
               <div
-                className={`relative grid h-[72px] w-[56px] place-items-center overflow-hidden rounded-md bg-gradient-to-br [@container(min-height:200px)]:h-[92px] [@container(min-height:200px)]:w-[70px] ${crop.bg} ${
+                className={`relative grid h-[72px] w-[56px] place-items-center overflow-hidden rounded-md bg-linear-to-br [@container(min-height:200px)]:h-[92px] [@container(min-height:200px)]:w-[70px] ${crop.bg} ${
                   i === read && step < total ? 'ring-2 ring-accent ring-offset-2 ring-offset-card' : ''
                 }`}
               >
@@ -330,7 +330,7 @@ export default function ProjectPreview({ project, run, play, bleed }: ProjectPre
       className={`${styles.stage} relative h-[208px] shrink-0 overflow-hidden rounded-[24px] sm:h-[220px] [@container(min-width:880px)]:h-auto [@container(min-width:880px)]:self-stretch ${project.featured ? projectPreview.featuredSide : ''}`}
     >
       <div
-        className={`absolute -bottom-4 flex flex-col rounded-[14px] bg-card shadow-[0_22px_44px_-26px_rgb(var(--head)/0.4),0_0_0_1px_rgb(var(--head)/0.05)] transition-transform duration-500 ease-out motion-safe:group-focus-within:[transform:translateY(-6px)_rotate(-0.4deg)] motion-safe:group-hover:[transform:translateY(-6px)_rotate(-0.4deg)] dark:shadow-[0_22px_44px_-22px_rgb(0_0_0/0.85),0_0_0_1px_rgb(var(--head)/0.07)] ${projectPreview.top[layout]} ${projectPreview.window[bleed]}`}
+        className={`absolute -bottom-4 flex flex-col rounded-[14px] bg-card shadow-[0_22px_44px_-26px_rgb(var(--head)/0.4),0_0_0_1px_rgb(var(--head)/0.05)] transition-transform duration-500 ease-out motion-safe:group-focus-within:transform-[translateY(-6px)_rotate(-0.4deg)] motion-safe:group-hover:transform-[translateY(-6px)_rotate(-0.4deg)] dark:shadow-[0_22px_44px_-22px_rgb(0_0_0/0.85),0_0_0_1px_rgb(var(--head)/0.07)] ${projectPreview.top[layout]} ${projectPreview.window[bleed]}`}
       >
         <div className={`flex h-7 shrink-0 items-center gap-3 border-b border-line/70 ${projectPreview.barInset[bleed]}`}>
           <span className="flex gap-[5px]">
@@ -347,7 +347,7 @@ export default function ProjectPreview({ project, run, play, bleed }: ProjectPre
             {projects.live}
           </span>
         </div>
-        <div className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 [container-type:size] ${projectPreview.inset[bleed]}`}>
+        <div className={`min-h-0 flex-1 overflow-hidden pb-5 pt-3 @container-size ${projectPreview.inset[bleed]}`}>
           {run > 0 && <Fragment key={run}>{demo}</Fragment>}
         </div>
       </div>

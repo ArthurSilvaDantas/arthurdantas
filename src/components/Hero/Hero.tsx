@@ -14,7 +14,7 @@ export default function Hero({ locale }: LocaleProps) {
       id="inicio"
       tabIndex={-1}
       aria-labelledby="hero-nome"
-      className="relative flex min-h-[calc(100svh-var(--nav-h)-var(--marquee-h))] flex-col justify-center overflow-hidden focus:outline-none lg:pb-8"
+      className="relative flex min-h-[calc(100svh-var(--nav-h)-var(--marquee-h))] flex-col justify-center overflow-hidden focus:outline-hidden lg:pb-8"
     >
       <div className="relative">
         <HeroGraph chips={hero.graphChips} />
@@ -37,7 +37,7 @@ export default function Hero({ locale }: LocaleProps) {
 
               <HeroHeadline />
 
-              <p className="hero-soft max-w-[600px] text-base leading-[1.65] text-muted sm:text-lg" style={introDelay(0.55)}>
+              <p className="hero-soft max-w-[600px] text-base leading-[1.65] text-muted sm:text-lg sm:leading-7" style={introDelay(0.55)}>
                 <RichText parts={hero.bio} />
               </p>
             </div>

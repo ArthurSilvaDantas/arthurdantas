@@ -29,7 +29,7 @@ export default function HeroHeadline() {
         </span>
       </p>
 
-      <p aria-hidden className="hero-fade whitespace-nowrap font-mono text-sm leading-[normal] text-head sm:text-base" style={introDelay(0.48)}>
+      <p aria-hidden className="hero-fade whitespace-nowrap font-mono text-sm leading-[normal] text-head sm:text-base sm:leading-6" style={introDelay(0.48)}>
         {hero.nextTokenLabel} <span className="text-muted">→</span> <span className="text-accent-text">{word}</span>
       </p>
     </>

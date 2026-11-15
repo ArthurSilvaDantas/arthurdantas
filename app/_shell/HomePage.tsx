@@ -10,7 +10,7 @@ import SectionDivider from '@/src/components/SectionDivider';
 
 export default function HomePage({ locale }: LocaleProps) {
   return (
-    <main id="conteudo" tabIndex={-1} className="focus:outline-none">
+    <main id="conteudo" tabIndex={-1} className="focus:outline-hidden">
       <Hero locale={locale} />
       <TechMarquee locale={locale} />
       <About locale={locale} />

@@ -7,16 +7,16 @@ import MagneticButton from './MagneticButton';
 export default function Contact({ locale }: LocaleProps) {
   const { contact } = getContent(locale);
   return (
-    <section id="contato" tabIndex={-1} aria-labelledby="contato-titulo" className="section-screen focus:outline-none">
+    <section id="contato" tabIndex={-1} aria-labelledby="contato-titulo" className="section-screen focus:outline-hidden">
       <div className="site-container flex flex-col items-center gap-6 py-24 text-center lg:pb-24 lg:pt-[120px]">
         <SectionHeader
           id="contato-titulo"
           eyebrow={contact.eyebrow}
           title={contact.title}
-          className="max-w-[900px] items-center !gap-6"
+          className="max-w-[900px] items-center gap-6!"
           titleClassName="text-[clamp(2.75rem,6.4vw,5rem)]"
         />
-        <p className="reveal max-w-[560px] text-base leading-[1.6] text-muted sm:text-lg" style={revealOrder(3)}>
+        <p className="reveal max-w-[560px] text-base leading-[1.6] text-muted sm:text-lg sm:leading-7" style={revealOrder(3)}>
           {contact.text}
         </p>
         <div className="reveal" style={revealOrder(4)}>
