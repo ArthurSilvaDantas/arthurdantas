@@ -7,12 +7,10 @@ const LEGACY_ROUTES = [
 ];
 
 const nextConfig: NextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     formats: ['image/avif', 'image/webp'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 448, 512],
+    qualities: [75, 90],
   },
   async redirects() {
     return [
