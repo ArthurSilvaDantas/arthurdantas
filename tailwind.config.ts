@@ -9,11 +9,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        grey: {
-          900: '#000000',
-          800: '#040404',
-          200: '#4141412f'
-        },
         'head': 'rgb(var(--head) / <alpha-value>)',
         'body': 'rgb(var(--body) / <alpha-value>)',
         'muted': 'rgb(var(--muted) / <alpha-value>)',
@@ -39,25 +34,10 @@ export default {
         mono: ['var(--font-jetbrains-mono-arrow)', 'var(--font-jetbrains-mono)', 'ui-monospace', 'monospace'],
       },
       animation: {
-        'slide-down': 'slideDown 1.2s ease-out',
-        'rise-from-ground': 'riseFromGround 1s ease-out',
-        'bounce': 'bounce 1s infinite',
         'caret': 'caret 1s step-end infinite',
         'marquee': 'marquee 80s linear infinite',
       },
       keyframes: {
-        bounce: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        slideDown: {
-          '0%': { transform: 'translateY(-100px)' },
-          '100%': { transform: 'translateY(0)' },
-        },
-        riseFromGround: {
-          '0%': { transform: 'translateY(100px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
         marquee: {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-50%)' },
