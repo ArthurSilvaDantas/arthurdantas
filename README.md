@@ -51,10 +51,3 @@ $ npm run dev
 $ npm run lint
 $ npm run build
 ```
-
-## :rocket: Releases e deploy
-
-- Os commits seguem o padrão [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `refactor:`...).
-- O [release-please](https://github.com/googleapis/release-please) mantém um PR de release com a próxima versão e o `CHANGELOG.md`. Ao mergear esse PR, a release é publicada no GitHub e o branch `production` passa a apontar para ela, o que dispara o deploy de produção na Vercel.
-- Mudanças grandes, marcadas com `feat!:` ou `BREAKING CHANGE:`, geram uma nova versão major.
-- O Dependabot verifica as dependências toda semana. Atualizações patch e minor são testadas e mergeadas automaticamente; as major ficam para revisão.
