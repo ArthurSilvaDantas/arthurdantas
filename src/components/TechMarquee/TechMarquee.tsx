@@ -28,7 +28,7 @@ export default function TechMarquee({ locale }: LocaleProps) {
           <li key={tech.name}>{tech.name}</li>
         ))}
       </ul>
-      <div className="scroll-hide overflow-hidden [scrollbar-width:none] motion-reduce:overflow-x-auto">
+      <div className="scroll-hide overflow-hidden motion-reduce:overflow-x-auto">
         <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
           <Track />
           <Track duplicate />

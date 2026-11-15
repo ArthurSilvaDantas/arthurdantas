@@ -26,3 +26,5 @@ export const ZERO_WIDTH_SPACE = '\u200B';
 
 export const REVEAL_BOOT_SCRIPT =
   "var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(!d.dataset.revealReady)d.classList.remove('js')},4000)";
+
+export const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';

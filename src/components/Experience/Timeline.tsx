@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { GSAP_PRELOAD_MARGIN, TIMELINE_VISIBLE_TOPICS } from '@/src/config/ui';
+import { GSAP_PRELOAD_MARGIN, REDUCED_MOTION_QUERY, TIMELINE_VISIBLE_TOPICS } from '@/src/config/ui';
 import type { TimelineEntryProps, TimelineProps } from '@/src/types';
 import { useContent } from '@/src/i18n/I18nProvider';
 import { formatDuration, formatMonth, monthsBetween } from '@/src/lib/dates';
@@ -93,7 +93,7 @@ export default function Timeline({ entries }: TimelineProps) {
 
   useEffect(() => {
     const el = root.current;
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!el || window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;

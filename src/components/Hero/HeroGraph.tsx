@@ -5,6 +5,7 @@ import { cssEaseOut, graph } from '@/src/lib/motion';
 import { heroGraph, svgCenterOrigin } from '@/src/styles/classes';
 import type { HeroGraphProps, WaveArrival } from '@/src/types';
 import { edgePaths, edges, neighbors, nodes, token, waveOrigins } from './graph';
+import { REDUCED_MOTION_QUERY } from '@/src/config/ui';
 
 function spread(origin: number, maxHops: number, skip: number[] = []): WaveArrival[] {
   const reached = new Map<number, WaveArrival>();
@@ -117,7 +118,7 @@ export default function HeroGraph({ chips }: HeroGraphProps) {
       });
     };
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const reduce = window.matchMedia(REDUCED_MOTION_QUERY);
     let onScreen = false;
     let timer: number | undefined;
     let step = 0;
