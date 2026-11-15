@@ -1,0 +1,65 @@
+.install {
+  opacity: 0;
+}
+
+.dim {
+  transition: opacity 0.35s var(--ease-reveal);
+}
+
+@media (hover: hover) {
+  .list:has(.row:hover) .row:not(:hover) .dim {
+    opacity: 0.38;
+  }
+  .chip {
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .chip:hover {
+    border-color: rgb(var(--line-2));
+    color: rgb(var(--head));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .row .install {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+  :global(.js) .row:global(.is-in) .install {
+    opacity: 0;
+    transform: scaleX(1);
+    transition:
+      transform 1.1s var(--ease-reveal),
+      opacity 0.8s ease;
+    transition-delay:
+      calc(var(--i, 0) * 70ms + 0.1s),
+      calc(var(--i, 0) * 70ms + 1.15s);
+  }
+
+  :global(.js) .row .pkg {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  :global(.js) .row:global(.is-in) .pkg {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.5s var(--ease-reveal),
+      transform 0.7s var(--ease-reveal);
+    transition-delay: calc(var(--i, 0) * 70ms + 0.25s + var(--c, 0) * 40ms);
+  }
+
+  @media (hover: hover) {
+    .row:hover .chip {
+      animation: hop 0.6s var(--ease-reveal) both;
+      animation-delay: calc(var(--c, 0) * 30ms);
+    }
+  }
+}
+
+@keyframes hop {
+  35% {
+    transform: translateY(-3px);
+  }
+}

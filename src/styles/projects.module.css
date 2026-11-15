@@ -1,0 +1,36 @@
+.stage {
+  --glow-a: 0.26;
+  background-color: rgb(var(--bg-2));
+  background-image:
+    radial-gradient(var(--glow, 70% 90% at 0% 0%), rgb(var(--accent) / var(--glow-a)), transparent 72%),
+    linear-gradient(165deg, rgb(var(--tint)) 10%, rgb(var(--bg-2)) 85%);
+}
+:global(.dark) .stage {
+  --glow-a: 0.14;
+}
+
+.panel {
+  background-color: rgb(var(--card));
+}
+@container (min-width: 880px) {
+  .panel {
+    --glow-a: 0.22;
+    background-color: rgb(var(--tint));
+    background-image:
+      radial-gradient(55% 75% at 82% 8%, rgb(var(--accent) / var(--glow-a)), transparent 70%),
+      linear-gradient(120deg, rgb(var(--tint)) 25%, rgb(var(--bg-2)) 100%);
+  }
+  :global(.dark) .panel {
+    --glow-a: 0.13;
+  }
+  .panel .stage {
+    background: none;
+  }
+}
+
+.scroller {
+  scrollbar-width: none;
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
