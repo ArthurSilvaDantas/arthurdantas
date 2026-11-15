@@ -7,14 +7,23 @@ updates:
       day: monday
       time: '06:00'
       timezone: America/Campo_Grande
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 5
     commit-message:
       prefix: fix
       prefix-development: chore
       include: scope
     groups:
       minor-and-patch:
+        applies-to: version-updates
         update-types: [minor, patch]
+      security:
+        applies-to: security-updates
+        patterns: ['*']
+    ignore:
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
@@ -23,6 +32,10 @@ updates:
       day: monday
       time: '06:00'
       timezone: America/Campo_Grande
+    open-pull-requests-limit: 5
     commit-message:
       prefix: chore
       include: scope
+    groups:
+      github-actions:
+        patterns: ['*']
