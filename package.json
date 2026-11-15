@@ -21,7 +21,7 @@
     "@eslint/eslintrc": "^3",
     "@types/node": "22.10.7",
     "@types/react": "^19",
-    "eslint": "^9.39.5",
+    "eslint": "^10.14.0",
     "eslint-config-next": "^15.5.29",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.7.3"
