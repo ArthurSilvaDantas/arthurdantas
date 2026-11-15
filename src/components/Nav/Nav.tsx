@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useRef, useState, type MouseEvent, type PointerEvent } from 'react';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent, type PointerEvent } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { sectionIds } from '@/src/content/shared';
 import { NAV_MENU_ID, NAV_SCROLLED_THRESHOLD } from '@/src/config/ui';
 import { useContent, useLocale } from '@/src/i18n/I18nProvider';
@@ -13,6 +13,11 @@ import { useLenis, useScrollToSection } from '@/src/components/providers/SmoothS
 import { useActiveSection } from '@/src/hooks/useActiveSection';
 import type { Box, SectionId } from '@/src/types';
 import LanguageSwitch from './LanguageSwitch';
+
+const subscribeToScroll = (onChange: () => void) => {
+  window.addEventListener('scroll', onChange, { passive: true });
+  return () => window.removeEventListener('scroll', onChange);
+};
 
 export default function Nav() {
   const { nav } = useContent();
@@ -57,10 +62,11 @@ export default function Nav() {
     };
   }, [open, setScrollLocked]);
 
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > NAV_SCROLLED_THRESHOLD));
-  useEffect(() => setScrolled(window.scrollY > NAV_SCROLLED_THRESHOLD), []);
+  const scrolled = useSyncExternalStore(
+    subscribeToScroll,
+    () => window.scrollY > NAV_SCROLLED_THRESHOLD,
+    () => false,
+  );
 
   const active = useActiveSection(sectionIds);
   const current = active === 'inicio' ? null : active;

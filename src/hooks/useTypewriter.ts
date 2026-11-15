@@ -8,8 +8,6 @@ export function useTypewriter(words: readonly string[]) {
   const [text, setText] = useState(words[0]);
 
   useEffect(() => {
-    setIndex(0);
-    setText(words[0]);
     if (reduce || words.length < 2) return;
 
     let i = 0;
@@ -39,7 +37,11 @@ export function useTypewriter(words: readonly string[]) {
     };
 
     schedule(typing.holdWord);
-    return () => window.clearTimeout(timer);
+    return () => {
+      window.clearTimeout(timer);
+      setIndex(0);
+      setText(words[0]);
+    };
   }, [reduce, words]);
 
   return { text, word: words[index] };

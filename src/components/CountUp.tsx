@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useInView, useReducedMotion } from 'motion/react';
 import { useLocale } from '@/src/i18n/I18nProvider';
+import { useHydrated } from '@/src/hooks/useHydrated';
 import { htmlLang, numberSeparators } from '@/src/i18n/locales';
 import { COUNT_UP_DURATION_MS } from '@/src/config/ui';
 import type { CountUpProps, Locale } from '@/src/types';
@@ -27,29 +28,27 @@ export default function CountUp({ value }: CountUpProps) {
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
   const locale = useLocale();
-  const [shown, setShown] = useState(value);
+  const hydrated = useHydrated();
+  const parsed = useMemo(() => parse(value, locale), [value, locale]);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const parsed = parse(value, locale);
-    if (!parsed || reduce) {
-      setShown(value);
-      return;
-    }
-    const render = (n: number) => setShown(parsed.prefix + format(n, parsed.decimals, locale) + parsed.suffix);
-    if (!inView) {
-      render(0);
-      return;
-    }
+    if (!parsed || reduce || !inView) return;
     const start = performance.now();
     let frame = 0;
     const tick = (now: number) => {
-      const progress = Math.min(1, (now - start) / COUNT_UP_DURATION_MS);
-      render(parsed.target * easeOut(progress));
-      if (progress < 1) frame = requestAnimationFrame(tick);
+      const next = Math.min(1, (now - start) / COUNT_UP_DURATION_MS);
+      setProgress(next);
+      if (next < 1) frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [value, inView, reduce, locale]);
+  }, [parsed, inView, reduce]);
+
+  const shown =
+    hydrated && parsed && !reduce
+      ? parsed.prefix + format(parsed.target * easeOut(progress), parsed.decimals, locale) + parsed.suffix
+      : value;
 
   return (
     <span ref={ref} className="inline-grid tabular-nums">

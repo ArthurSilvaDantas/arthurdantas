@@ -12,8 +12,9 @@ export default function SmoothScroll({ children }: ChildrenProps) {
 
   useEffect(() => {
     const instance = new Lenis({ autoRaf: true });
-    setLenis(instance);
+    const frame = requestAnimationFrame(() => setLenis(instance));
     return () => {
+      cancelAnimationFrame(frame);
       instance.destroy();
       setLenis(null);
     };

@@ -1,15 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { useContent } from '@/src/i18n/I18nProvider';
+import { useHydrated } from '@/src/hooks/useHydrated';
 
 export default function ThemeToggle() {
   const { themeToggle } = useContent();
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useHydrated();
 
   const isDark = resolvedTheme === 'dark';
   const label = !mounted ? themeToggle.fallback : isDark ? themeToggle.toLight : themeToggle.toDark;

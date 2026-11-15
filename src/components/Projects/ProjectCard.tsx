@@ -2,10 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type ReactNode, type RefObject } from 'react';
 import Image from 'next/image';
-import { useInView, useReducedMotion } from 'motion/react';
+import { inView, useInView, useReducedMotion } from 'motion/react';
 import { DEMO_REPLAY_COOLDOWN_MS } from '@/src/config/ui';
 import type { Content, Project, ProjectCardProps } from '@/src/types';
 import { useContent } from '@/src/i18n/I18nProvider';
+import { useHydrated } from '@/src/hooks/useHydrated';
 import Tag from '@/src/components/Tag';
 import GitHubIcon from '@/src/components/icons/GitHubIcon';
 import ArrowUpRightIcon from '@/src/components/icons/ArrowUpRightIcon';
@@ -15,20 +16,24 @@ import styles from '@/src/styles/projects.module.css';
 import ProjectPreview from './ProjectPreview';
 
 function usePlayback(ref: RefObject<HTMLElement | null>) {
-  const inView = useInView(ref, { amount: 0.3 });
+  const visible = useInView(ref, { amount: 0.3 });
   const reduce = useReducedMotion();
+  const hydrated = useHydrated();
   const [run, setRun] = useState(0);
   const startedAt = useRef(0);
 
   useEffect(() => {
-    if (reduce) {
-      setRun((r) => Math.max(r, 1));
-      return;
-    }
-    if (!inView) return;
-    startedAt.current = performance.now();
-    setRun((r) => r + 1);
-  }, [inView, reduce]);
+    const el = ref.current;
+    if (!el || reduce) return;
+    return inView(
+      el,
+      () => {
+        startedAt.current = performance.now();
+        setRun((r) => r + 1);
+      },
+      { amount: 0.3 },
+    );
+  }, [ref, reduce]);
 
   const replay = useCallback(() => {
     if (reduce || performance.now() - startedAt.current < DEMO_REPLAY_COOLDOWN_MS) return;
@@ -36,7 +41,7 @@ function usePlayback(ref: RefObject<HTMLElement | null>) {
     setRun((r) => r + 1);
   }, [reduce]);
 
-  return { run, play: inView && !reduce, replay };
+  return { run: reduce && hydrated ? Math.max(run, 1) : run, play: visible && !reduce, replay };
 }
 
 function cardParts(project: Project, featured: boolean, projects: Content['projects']): Record<'heading' | 'description' | 'metric' | 'tags' | 'links', ReactNode> {
