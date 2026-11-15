@@ -1,4 +1,4 @@
-import type { Locale, NumberSeparators } from '@/src/types';
+import type { Locale, NumberSeparators, SectionId } from '@/src/types';
 
 export const locales: readonly Locale[] = ['pt', 'en'];
 
@@ -15,4 +15,10 @@ export const localeShortLabel: Record<Locale, string> = { pt: 'PT', en: 'EN' };
 export const numberSeparators: Record<Locale, NumberSeparators> = {
   pt: { thousands: '.', decimal: ',' },
   en: { thousands: ',', decimal: '.' },
+};
+
+export const sectionHref = (locale: Locale, section: SectionId | null = null) => {
+  const base = localePath[locale];
+  if (!section) return base;
+  return base === '/' ? `/#${section}` : `${base}#${section}`;
 };

@@ -2,8 +2,6 @@ import type { Profile, SectionId, Tech } from '@/src/types';
 
 export const sectionIds: readonly SectionId[] = ['inicio', 'sobre', 'skills', 'experiencia', 'projetos', 'contato'];
 
-export const CTA_SECTION: SectionId = 'contato';
-
 export const profiles = {
   github: { name: 'GitHub', href: 'https://github.com/ArthurSilvaDantas' },
   linkedin: { name: 'LinkedIn', href: 'https://www.linkedin.com/in/arthursdantas/' },
