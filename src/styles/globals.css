@@ -1,6 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-head: rgb(var(--head));
+  --color-body: rgb(var(--body));
+  --color-muted: rgb(var(--muted));
+  --color-bg: rgb(var(--bg));
+  --color-bg-2: rgb(var(--bg-2));
+  --color-card: rgb(var(--card));
+  --color-soft: rgb(var(--soft));
+  --color-line: rgb(var(--line));
+  --color-line-2: rgb(var(--line-2));
+  --color-edge: rgb(var(--edge));
+  --color-node: rgb(var(--node));
+  --color-accent: rgb(var(--accent));
+  --color-accent-text: rgb(var(--accent-text));
+  --color-tint: rgb(var(--tint));
+  --color-tint-text: rgb(var(--tint-text));
+  --color-ok: rgb(var(--ok));
+  --color-ok-bg: rgb(var(--ok-bg));
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-accent:
+    var(--font-inter-italic), var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-mono:
+    var(--font-jetbrains-mono-arrow), var(--font-jetbrains-mono), ui-monospace,
+    monospace;
+
+  --animate-caret: caret 1s step-end infinite;
+  --animate-marquee: marquee 80s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes caret {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 @layer base {
   :root {
