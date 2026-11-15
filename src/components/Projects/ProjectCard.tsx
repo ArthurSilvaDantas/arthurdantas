@@ -55,7 +55,7 @@ function cardParts(project: Project, featured: boolean, projects: Content['proje
       >
         {project.title}
       </h3>
-      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 font-mono text-xs leading-[1.5]">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5 font-mono text-xs leading-normal">
         <p className="text-accent-text">{project.tagline}</p>
         <p className="text-muted">{project.categories.map((c) => projects.categoryLabels[c]).join(' · ')}</p>
       </div>

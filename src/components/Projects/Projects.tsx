@@ -49,7 +49,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projetos" tabIndex={-1} aria-labelledby="projetos-titulo" className="section-screen focus:outline-none">
+    <section id="projetos" tabIndex={-1} aria-labelledby="projetos-titulo" className="section-screen focus:outline-hidden">
       <div className="site-container flex flex-col gap-6 pb-16 pt-20 md:gap-7 lg:pb-20 lg:pt-24">
         <SectionHeader id="projetos-titulo" eyebrow={projects.eyebrow} title={projects.title} />
 
@@ -96,7 +96,7 @@ export default function Projects() {
               'aria-label': projects.carousel.label,
               tabIndex: 0,
             })}
-            className={`scroll-hide -mx-5 snap-x snap-mandatory overflow-x-auto overscroll-x-contain pb-2 outline-offset-[-2px] md:mx-0 md:snap-none md:overflow-visible md:pb-0`}
+            className={`scroll-hide -mx-5 snap-x snap-mandatory overflow-x-auto overscroll-x-contain pb-2 -outline-offset-2 md:mx-0 md:snap-none md:overflow-visible md:pb-0`}
           >
             <ul
               aria-label={projects.listLabel}

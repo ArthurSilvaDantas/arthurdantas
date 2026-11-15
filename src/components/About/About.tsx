@@ -9,12 +9,12 @@ import { aboutCard } from '@/src/styles/classes';
 export default function About({ locale }: LocaleProps) {
   const { about } = getContent(locale);
   return (
-    <section id="sobre" tabIndex={-1} aria-labelledby="sobre-titulo" className="section-screen focus:outline-none">
+    <section id="sobre" tabIndex={-1} aria-labelledby="sobre-titulo" className="section-screen focus:outline-hidden">
       <div className="site-container flex flex-col gap-12 py-20 lg:flex-row lg:items-center lg:gap-16 lg:pb-24 lg:pt-[104px]">
         <div className="flex min-w-0 flex-1 flex-col items-start gap-5">
           <SectionHeader id="sobre-titulo" eyebrow={about.eyebrow} title={about.title} className="w-full" />
           {about.paragraphs.map((parts, i) => (
-            <p key={i} className="reveal text-base leading-[1.7] text-muted sm:text-lg" style={revealOrder(3 + i)}>
+            <p key={i} className="reveal text-base leading-[1.7] text-muted sm:text-lg sm:leading-7" style={revealOrder(3 + i)}>
               <RichText parts={parts} />
             </p>
           ))}

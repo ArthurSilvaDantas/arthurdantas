@@ -13,7 +13,7 @@ const techByName = new Map(techStack.map((t) => [t.name, t]));
 export default function Skills({ locale }: LocaleProps) {
   const { skills } = getContent(locale);
   return (
-    <section id="skills" tabIndex={-1} aria-labelledby="skills-titulo" className="section-screen focus:outline-none">
+    <section id="skills" tabIndex={-1} aria-labelledby="skills-titulo" className="section-screen focus:outline-hidden">
       <div className="flex flex-col gap-8 py-14 lg:gap-10">
         <div className="site-container">
           <SectionHeader id="skills-titulo" eyebrow={skills.eyebrow} title={skills.title}>
@@ -32,7 +32,7 @@ export default function Skills({ locale }: LocaleProps) {
                 <span aria-hidden className={`pointer-events-none absolute inset-x-0 -top-px h-px origin-left bg-accent ${styles.install}`} />
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-accent transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-x-100"
+                  className="pointer-events-none absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-accent transition-transform duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none [@media(hover:hover)]:group-hover:scale-x-100"
                 />
 
                 <span aria-hidden className={`font-mono text-sm leading-[normal] text-accent-text ${styles.dim}`}>
