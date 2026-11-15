@@ -3,9 +3,8 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: "class",
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -15,14 +14,36 @@ export default {
           800: '#040404',
           200: '#4141412f'
         },
+        'head': 'rgb(var(--head) / <alpha-value>)',
+        'body': 'rgb(var(--body) / <alpha-value>)',
+        'muted': 'rgb(var(--muted) / <alpha-value>)',
+        'bg': 'rgb(var(--bg) / <alpha-value>)',
+        'bg-2': 'rgb(var(--bg-2) / <alpha-value>)',
+        'card': 'rgb(var(--card) / <alpha-value>)',
+        'soft': 'rgb(var(--soft) / <alpha-value>)',
+        'line': 'rgb(var(--line) / <alpha-value>)',
+        'line-2': 'rgb(var(--line-2) / <alpha-value>)',
+        'edge': 'rgb(var(--edge) / <alpha-value>)',
+        'node': 'rgb(var(--node) / <alpha-value>)',
+        'accent': 'rgb(var(--accent) / <alpha-value>)',
+        'accent-text': 'rgb(var(--accent-text) / <alpha-value>)',
+        'tint': 'rgb(var(--tint) / <alpha-value>)',
+        'tint-text': 'rgb(var(--tint-text) / <alpha-value>)',
+        'ok': 'rgb(var(--ok) / <alpha-value>)',
+        'ok-bg': 'rgb(var(--ok-bg) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        accent: ['var(--font-inter-italic)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains-mono-arrow)', 'var(--font-jetbrains-mono)', 'ui-monospace', 'monospace'],
       },
       animation: {
         'slide-down': 'slideDown 1.2s ease-out',
         'rise-from-ground': 'riseFromGround 1s ease-out',
         'bounce': 'bounce 1s infinite',
+        'caret': 'caret 1s step-end infinite',
+        'marquee': 'marquee 80s linear infinite',
       },
       keyframes: {
         bounce: {
@@ -36,6 +57,14 @@ export default {
         riseFromGround: {
           '0%': { transform: 'translateY(100px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+        caret: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
         },
       },
     },
