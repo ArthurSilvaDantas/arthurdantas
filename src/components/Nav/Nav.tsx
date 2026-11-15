@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type PointerEvent } from 'react';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 import { CTA_SECTION, sectionIds } from '@/src/content/shared';
@@ -23,8 +22,6 @@ export default function Nav() {
   const { nav } = useContent();
   const home = localePath[useLocale()];
   const sectionHref = (id: SectionId) => (home === '/' ? `/#${id}` : `${home}#${id}`);
-  const pathname = usePathname();
-  const isHome = pathname === home;
   const scrollToSection = useScrollToSection();
   const lenis = useLenis();
 
@@ -62,14 +59,12 @@ export default function Nav() {
     };
   }, [open, setScrollLocked]);
 
-  useEffect(() => setOpen(false), [pathname]);
-
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
   useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > NAV_SCROLLED_THRESHOLD));
   useEffect(() => setScrolled(window.scrollY > NAV_SCROLLED_THRESHOLD), []);
 
-  const active = useActiveSection(sectionIds, isHome);
+  const active = useActiveSection(sectionIds);
   const current = active === 'inicio' ? null : active;
   const [lastCurrent, setLastCurrent] = useState<SectionId | null>(null);
   if (current && current !== lastCurrent) setLastCurrent(current);
@@ -115,10 +110,6 @@ export default function Nav() {
   const currentLabel = [...nav.links, nav.cta].find((item) => item.id === current)?.label;
 
   const goTo = (e: MouseEvent<HTMLAnchorElement>, id: SectionId) => {
-    if (!isHome) {
-      setOpen(false);
-      return;
-    }
     e.preventDefault();
     setScrollLocked(false);
     setOpen(false);
