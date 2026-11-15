@@ -10,7 +10,7 @@ import Tag from '@/src/components/Tag';
 import GitHubIcon from '@/src/components/icons/GitHubIcon';
 import ArrowUpRightIcon from '@/src/components/icons/ArrowUpRightIcon';
 import CountUp from '@/src/components/CountUp';
-import { projectCard } from '@/src/styles/classes';
+import { projectCard, projectGrid } from '@/src/styles/classes';
 import styles from '@/src/styles/projects.module.css';
 import ProjectPreview from './ProjectPreview';
 
@@ -147,7 +147,7 @@ export default function ProjectCard({ project, bleed }: ProjectCardProps) {
         {...events}
         className={`reveal-item group relative flex h-full flex-col gap-4 rounded-[32px] p-2 pb-5 sm:gap-5 ${projectCard.frame} ${styles.panel} [@container(min-width:880px)]:flex-row-reverse [@container(min-width:880px)]:gap-0 [@container(min-width:880px)]:overflow-hidden [@container(min-width:880px)]:p-0`}
       >
-        <ProjectPreview project={project} run={run} play={play} bleed="right" />
+        <ProjectPreview project={project} run={run} play={play} bleed={bleed} />
         <div className="flex min-w-0 flex-1 flex-col gap-4 px-3 [@container(min-width:880px)]:justify-center [@container(min-width:880px)]:py-9 [@container(min-width:880px)]:pl-10 [@container(min-width:880px)]:pr-8">
           {parts.heading}
           {parts.description}
@@ -163,7 +163,7 @@ export default function ProjectCard({ project, bleed }: ProjectCardProps) {
     <article
       ref={ref}
       {...events}
-      className={`reveal-item group relative flex h-full flex-col gap-3.5 rounded-[32px] bg-card p-2 pb-5 ${projectCard.frame} md:row-span-6 md:grid md:grid-rows-subgrid md:gap-y-3.5`}
+      className={`reveal-item group relative flex h-full flex-col gap-3.5 rounded-[32px] bg-card p-2 pb-5 ${projectCard.frame} ${projectGrid.regular}`}
     >
       <ProjectPreview project={project} run={run} play={play} bleed={bleed} />
       <div className="mt-1.5 px-3">{parts.heading}</div>
