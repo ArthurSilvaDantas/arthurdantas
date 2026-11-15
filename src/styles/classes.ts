@@ -63,22 +63,19 @@ export const projectPreview = {
   } satisfies Record<ProjectPreviewKind, Record<Bleed, string>>,
   window: {
     right: 'left-6 -right-6 [@container(min-width:880px)]:left-8 [@container(min-width:880px)]:-right-8',
-    left: '-left-6 right-6 [@container(min-width:880px)]:-left-8 [@container(min-width:880px)]:right-8',
+    left: '-left-6 right-6',
   } satisfies Record<Bleed, string>,
   inset: {
     right: 'pl-3.5 pr-[38px] [@container(min-width:880px)]:pl-4 [@container(min-width:880px)]:pr-12',
-    left: 'pl-[38px] pr-3.5 [@container(min-width:880px)]:pl-12 [@container(min-width:880px)]:pr-4',
+    left: 'pl-[38px] pr-3.5',
   } satisfies Record<Bleed, string>,
   barInset: {
     right: 'pl-3 pr-9 [@container(min-width:880px)]:pr-11',
-    left: 'pl-9 pr-3 [@container(min-width:880px)]:pl-11',
+    left: 'pl-9 pr-3',
   } satisfies Record<Bleed, string>,
-  side: {
-    featured: '[@container(min-width:880px)]:rounded-none [@container(min-width:880px)_and_(max-width:1099px)]:w-1/2 [@container(min-width:1100px)]:w-[44%]',
-    regular: '[@container(min-width:880px)]:w-[56%] [@container(min-width:880px)]:min-h-[340px]',
-  } satisfies Record<ProjectLayout, string>,
+  featuredSide: '[@container(min-width:880px)]:rounded-none [@container(min-width:880px)_and_(max-width:1099px)]:w-1/2 [@container(min-width:1100px)]:w-[44%]',
   top: {
     featured: 'top-[18px] sm:top-[22px] [@container(min-width:880px)]:top-[max(3rem,calc(100%-19.5rem))]',
-    regular: 'top-[18px] sm:top-[22px] [@container(min-width:880px)]:top-[max(2rem,calc(100%-19.5rem))]',
+    regular: 'top-[18px] sm:top-[22px]',
   } satisfies Record<ProjectLayout, string>,
 };
