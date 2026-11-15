@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import type { ReactNode } from 'react';
-import { getContent } from '@/src/content';
+import { useContent } from '@/src/i18n/I18nProvider';
 import GitHubIcon from '@/src/components/icons/GitHubIcon';
 
 const PROFILE_ICONS: Record<string, ReactNode> = {
@@ -12,7 +12,7 @@ const PROFILE_ICONS: Record<string, ReactNode> = {
 };
 
 export default function Footer() {
-  const { footer } = getContent('pt');
+  const { footer } = useContent();
   const year = new Date().getFullYear();
 
   return (
