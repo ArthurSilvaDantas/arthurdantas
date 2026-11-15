@@ -49,7 +49,7 @@ export type ProjectCardProps = { project: Project; bleed: Bleed };
 
 export type ProjectPreviewProps = { project: Project; run: number; play: boolean; bleed: Bleed };
 
-export type CarouselDotsProps = { carousel: CarouselState; items: Project[]; className?: string };
+export type CarouselDotsProps = { active: number; goTo: CarouselState['goTo']; items: Project[]; className: string };
 
 export type DemoProps = { play: boolean };
 

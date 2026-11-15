@@ -40,11 +40,11 @@ export default function Projects() {
   const visible = projects.items.filter((p) => matches(p, filter));
   const cellClasses = gridCellClasses(visible);
   const regular = visible.filter((p) => !p.featured);
-  const carousel = useCarousel(visible.map((p) => p.slug));
+  const { enabled, active, scrollerRef, onScroll, goTo, reset, itemRef } = useCarousel(visible.map((p) => p.slug));
 
   const choose = (id: ProjectFilterId) => {
     if (id === filter) return;
-    carousel.reset();
+    reset();
     setFilter(id);
   };
 
@@ -87,10 +87,10 @@ export default function Projects() {
 
         <div>
           <div
-            ref={carousel.scrollerRef}
-            onScroll={carousel.onScroll}
+            ref={scrollerRef}
+            onScroll={onScroll}
             data-lenis-prevent-horizontal
-            {...(carousel.enabled && {
+            {...(enabled && {
               role: 'region',
               'aria-roledescription': projects.carousel.roleDescription,
               'aria-label': projects.carousel.label,
@@ -106,7 +106,7 @@ export default function Projects() {
                 {visible.map((p, i) => (
                   <motion.li
                     key={p.slug}
-                    ref={carousel.itemRef(p.slug)}
+                    ref={itemRef(p.slug)}
                     style={revealOrder(Math.min(i, 5))}
                     layout="position"
                     initial={{ opacity: 0, scale: 0.97 }}
@@ -122,7 +122,7 @@ export default function Projects() {
             </ul>
           </div>
 
-          <CarouselDots carousel={carousel} items={visible} className="mt-3 md:hidden" />
+          <CarouselDots active={active} goTo={goTo} items={visible} className="mt-3 md:hidden" />
         </div>
       </div>
     </section>

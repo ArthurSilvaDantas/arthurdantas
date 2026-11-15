@@ -95,10 +95,7 @@ function FaceDemo({ play }: DemoProps) {
   const [closed, setClosed] = useState(false);
 
   useEffect(() => {
-    if (!play) {
-      setClosed(false);
-      return;
-    }
+    if (!play) return;
     let timeout = 0;
     const interval = window.setInterval(() => {
       setClosed(true);
@@ -107,6 +104,7 @@ function FaceDemo({ play }: DemoProps) {
     return () => {
       window.clearInterval(interval);
       window.clearTimeout(timeout);
+      setClosed(false);
     };
   }, [play]);
 
@@ -261,12 +259,12 @@ function DigitsDemo({ play }: DemoProps) {
   const [step, setStep] = useState(play ? 0 : total);
 
   useEffect(() => {
-    if (!play) {
-      setStep(total);
-      return;
-    }
+    if (!play) return;
     const id = window.setInterval(() => setStep((s) => (s >= total + 2 ? 0 : s + 1)), 700);
-    return () => window.clearInterval(id);
+    return () => {
+      window.clearInterval(id);
+      setStep(total);
+    };
   }, [play, total]);
 
   const read = Math.min(step, total);
