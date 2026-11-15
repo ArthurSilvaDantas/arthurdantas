@@ -2,23 +2,59 @@
 
 ## :bulb: Projeto
 
-Neste projeto, você poderá explorar um pouco da minha trajetória, experiências e habilidades, apresentadas em um portfólio web. Dentro do conteúdo, busco abordar aspectos significativos da minha vida, tanto pessoais quanto profissionais, com foco nas minhas realizações dentro da Engenharia de Software. O portfólio foi minimamente desenvolvido para refletir minha identidade e marca, utilizando cores, imagens e elementos visuais que representam quem sou.
+Portfólio pessoal de Arthur Dantas, Machine Learning Engineer & Researcher. O site apresenta a trajetória, as áreas de atuação e os projetos em NLP, Information Retrieval e Visão Computacional, com prévias animadas de cada projeto, métricas e links para o código no GitHub e os modelos no Hugging Face.
 
-
-## :computer: Tecnologias
-
-As tecnologias utilizadas no desenvolvimento deste portfólio incluem TypeScript e React. Como o portfólio possui temas claros e escuros, foi implementado o hook useTheme para gerenciar a troca de temas. Além disso, para garantir a funcionalidade multilíngue, foi utilizado o Next.js com a biblioteca next-i18next para realizar a tradução. Durante a estilização, o Tailwind CSS foi empregado, permitindo um design responsivo.
-
-Durante o desenvolvimento, para melhorar a performance, foi utilizado o dynamic para carregar componentes de forma assíncrona, diminuindo o tempo de carregamento inicial. Com isso, o componente só é carregado quando necessário. Também fiz uso do React.memo, evitando que o componente seja re-renderizado desnecessariamente caso suas props não mudem. Além disso, utilizei o useMemo e o useCallback para garantir que as funções não sejam recriadas em cada renderização.
+- Versões em português (`/`) e inglês (`/en`), com seletor de idioma que mantém a seção atual
+- Tema claro e escuro
+- Animações de entrada e de rolagem que respeitam a preferência de movimento reduzido
+- SEO com canonical, `hreflang` e sitemap para os dois idiomas
 
 ![Portfolio](public/images/readme/background-portfolio.png)
 
+## :computer: Tecnologias
+
+- **Next.js 15** (App Router) com páginas estáticas, **React 19** e **TypeScript**
+- **Tailwind CSS**, com os tokens de cor do tema em variáveis CSS
+- **Motion**, **GSAP** (carregado sob demanda) e **Lenis** para as animações e a rolagem suave
+- **next-themes** para o tema claro e escuro
+
+## :file_folder: Estrutura
+
+```
+app/
+  (pt)/            rota "/" em português
+  (en)/en/         rota "/en" em inglês
+  _shell/          documento raiz, home, metadados e fontes
+src/
+  components/      seções e componentes compartilhados
+  content/         textos em português e inglês e dados compartilhados
+  types/           tipos do projeto
+  config/          constantes do site e da interface
+  styles/          estilos globais, classes reutilizáveis e CSS Modules
+  i18n/            idiomas e provider de conteúdo
+  lib/ · hooks/    utilitários e hooks
+public/            imagens, ícones, robots e sitemap
+```
+
+Os textos ficam em `src/content/pt.ts` e `src/content/en.ts`, que seguem a mesma estrutura tipada.
 
 ## :arrow_forward: Executar
-```bash
-# Instala todas as dependências.
-$ npm install || yarn install
 
-# Executa.
-$ npm run dev || yarn dev
- ```
+```bash
+# Instala as dependências.
+$ npm install
+
+# Executa em modo de desenvolvimento.
+$ npm run dev
+
+# Verifica o código e gera a versão de produção.
+$ npm run lint
+$ npm run build
+```
+
+## :rocket: Releases e deploy
+
+- Os commits seguem o padrão [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `refactor:`...).
+- O [release-please](https://github.com/googleapis/release-please) mantém um PR de release com a próxima versão e o `CHANGELOG.md`. Ao mergear esse PR, a release é publicada no GitHub e o branch `production` passa a apontar para ela, o que dispara o deploy de produção na Vercel.
+- Mudanças grandes, marcadas com `feat!:` ou `BREAKING CHANGE:`, geram uma nova versão major.
+- O Dependabot verifica as dependências toda semana. Atualizações patch e minor são testadas e mergeadas automaticamente; as major ficam para revisão.
