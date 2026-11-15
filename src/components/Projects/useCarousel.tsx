@@ -86,18 +86,18 @@ export function useCarousel(slugs: string[]): CarouselState {
   return { enabled, active, scrollerRef, onScroll, goTo, reset, itemRef };
 }
 
-export function CarouselDots({ carousel, items, className = '' }: CarouselDotsProps) {
+export function CarouselDots({ active, goTo, items, className }: CarouselDotsProps) {
   const { projects } = useContent();
   if (items.length < 2) return null;
   return (
     <div className={`flex justify-center ${className}`}>
       {items.map((p, i) => {
-        const current = i === carousel.active;
+        const current = i === active;
         return (
           <button
             key={p.slug}
             type="button"
-            onClick={() => carousel.goTo(i)}
+            onClick={() => goTo(i)}
             aria-label={`${projects.carousel.goTo} ${p.title}`}
             aria-current={current ? 'true' : undefined}
             className="group/dot grid h-6 min-w-6 place-items-center px-1"
