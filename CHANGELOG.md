@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.1](https://github.com/ArthurSilvaDantas/arthurdantas/compare/v1.0.0...v1.0.1) (2026-11-21)
+
+
+### Correções
+
+* allow vertical page scroll over projects carousel ([04f8a42](https://github.com/ArthurSilvaDantas/arthurdantas/commit/04f8a420b8d2f32fffa12dcadd659ddb7509de75))
+* allow vertical page scroll over projects carousel ([16c5aae](https://github.com/ArthurSilvaDantas/arthurdantas/commit/16c5aae1f801eddc16c619154f63192c8eb66b35))
+
+
+### Documentação
+
+* remove releases and deployment section from README ([087ca31](https://github.com/ArthurSilvaDantas/arthurdantas/commit/087ca317ac21872bb10461bf4c30af498fab66f3))
+
 ## [1.0.0](https://github.com/ArthurSilvaDantas/arthurdantas/compare/v0.1.0...v1.0.0) (2026-11-15)
 
 
