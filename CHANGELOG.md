@@ -5,7 +5,6 @@
 
 ### Correções
 
-* allow vertical page scroll over projects carousel ([04f8a42](https://github.com/ArthurSilvaDantas/arthurdantas/commit/04f8a420b8d2f32fffa12dcadd659ddb7509de75))
 * allow vertical page scroll over projects carousel ([16c5aae](https://github.com/ArthurSilvaDantas/arthurdantas/commit/16c5aae1f801eddc16c619154f63192c8eb66b35))
 
 
