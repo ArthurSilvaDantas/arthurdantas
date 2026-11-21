@@ -96,7 +96,7 @@ export default function Projects() {
               'aria-label': projects.carousel.label,
               tabIndex: 0,
             })}
-            className={`scroll-hide -mx-5 snap-x snap-mandatory overflow-x-auto overscroll-x-contain pb-2 -outline-offset-2 md:mx-0 md:snap-none md:overflow-visible md:pb-0`}
+            className={`scroll-hide -mx-5 snap-x snap-mandatory overflow-x-auto overscroll-x-contain overscroll-y-auto! pb-2 -outline-offset-2 md:mx-0 md:snap-none md:overflow-visible md:pb-0`}
           >
             <ul
               aria-label={projects.listLabel}
