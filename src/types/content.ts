@@ -24,7 +24,7 @@ export type ExperienceEntry = {
   tags: TagItem[];
 };
 
-export type ProjectCategory = 'ir' | 'nlp' | 'cv';
+export type ProjectCategory = 'ir' | 'nlp' | 'cv' | 'mlops';
 
 export type ProjectFilterId = 'todos' | ProjectCategory;
 
