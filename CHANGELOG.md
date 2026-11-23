@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/ArthurSilvaDantas/arthurdantas/compare/v1.0.1...v1.1.0) (2026-11-23)
+
+
+### Novidades
+
+* add icons for new skills ([b8f2676](https://github.com/ArthurSilvaDantas/arthurdantas/commit/b8f2676cd670e7353a0dd1d551663c3f6aa71db0))
+* update jarvis project card ([376ba51](https://github.com/ArthurSilvaDantas/arthurdantas/commit/376ba5153c9a3b12d33b6be7a60e50101c611138))
+
+
+### Refatorações
+
+* regroup skills into five areas ([13a19e2](https://github.com/ArthurSilvaDantas/arthurdantas/commit/13a19e223c48c8faf7924a1fc30a7a11b5edd8e3))
+* skills ([693cac6](https://github.com/ArthurSilvaDantas/arthurdantas/commit/693cac6dd35d607780a4083a14fa165198ad9604))
+
 ## [1.0.1](https://github.com/ArthurSilvaDantas/arthurdantas/compare/v1.0.0...v1.0.1) (2026-11-21)
 
 
